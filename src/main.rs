@@ -5,6 +5,7 @@ use core::time::Duration;
 use anyhow::{bail, Result};
 use clap::Parser;
 use libbpf_rs::PerfBufferBuilder;
+use libbpf_rs::skel::{SkelBuilder, OpenSkel, Skel};
 use plain::Plain;
 use time::macros::format_description;
 use time::OffsetDateTime;
@@ -19,7 +20,7 @@ use runqslower::*;
 #[derive(Debug, Parser)]
 struct Command {
     /// Trace latency higher than this value
-    #[clap(default_value = "10000")]
+    #[clap(default_value = "100")]
     latency: u64,
     /// Process PID to trace
     #[clap(default_value = "0")]
